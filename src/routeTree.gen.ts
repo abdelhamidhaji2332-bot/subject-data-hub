@@ -10,33 +10,53 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as SubjectSubjectRouteImport } from './routes/subject.$subject'
+import { Route as SubjectSubjectFolderRouteImport } from './routes/subject_.$subject.$folder'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SubjectSubjectRoute = SubjectSubjectRouteImport.update({
+  id: '/subject/$subject',
+  path: '/subject/$subject',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SubjectSubjectFolderRoute = SubjectSubjectFolderRouteImport.update({
+  id: '/subject_/$subject/$folder',
+  path: '/subject/$subject/$folder',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/subject/$subject': typeof SubjectSubjectRoute
+  '/subject/$subject/$folder': typeof SubjectSubjectFolderRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/subject/$subject': typeof SubjectSubjectRoute
+  '/subject/$subject/$folder': typeof SubjectSubjectFolderRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/subject/$subject': typeof SubjectSubjectRoute
+  '/subject_/$subject/$folder': typeof SubjectSubjectFolderRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths: '/' | '/subject/$subject' | '/subject/$subject/$folder'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/subject/$subject' | '/subject/$subject/$folder'
+  id: '__root__' | '/' | '/subject/$subject' | '/subject_/$subject/$folder'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  SubjectSubjectRoute: typeof SubjectSubjectRoute
+  SubjectSubjectFolderRoute: typeof SubjectSubjectFolderRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +68,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/subject/$subject': {
+      id: '/subject/$subject'
+      path: '/subject/$subject'
+      fullPath: '/subject/$subject'
+      preLoaderRoute: typeof SubjectSubjectRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/subject_/$subject/$folder': {
+      id: '/subject_/$subject/$folder'
+      path: '/subject/$subject/$folder'
+      fullPath: '/subject/$subject/$folder'
+      preLoaderRoute: typeof SubjectSubjectFolderRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  SubjectSubjectRoute: SubjectSubjectRoute,
+  SubjectSubjectFolderRoute: SubjectSubjectFolderRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

@@ -51,6 +51,8 @@
   --color-chart-3: var(--chart-3);
   --color-chart-4: var(--chart-4);
   --color-chart-5: var(--chart-5);
+  --font-sans: "Plus Jakarta Sans", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
   --color-sidebar: var(--sidebar);
   --color-sidebar-foreground: var(--sidebar-foreground);
   --color-sidebar-primary: var(--sidebar-primary);
@@ -62,26 +64,27 @@
 }
 
 :root {
-  --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.129 0.042 264.695);
+  --radius: 0.75rem;
+  --background: oklch(0.975 0.008 250);
+  --foreground: oklch(0.21 0.04 265);
   --card: oklch(1 0 0);
-  --card-foreground: oklch(0.129 0.042 264.695);
+  --card-foreground: oklch(0.21 0.04 265);
   --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.129 0.042 264.695);
-  --primary: oklch(0.208 0.042 265.755);
-  --primary-foreground: oklch(0.984 0.003 247.858);
-  --secondary: oklch(0.968 0.007 247.896);
-  --secondary-foreground: oklch(0.208 0.042 265.755);
-  --muted: oklch(0.968 0.007 247.896);
-  --muted-foreground: oklch(0.554 0.046 257.417);
-  --accent: oklch(0.968 0.007 247.896);
-  --accent-foreground: oklch(0.208 0.042 265.755);
+  --popover-foreground: oklch(0.21 0.04 265);
+  --primary: oklch(0.59 0.14 242);
+  --primary-foreground: oklch(0.99 0 0);
+  --primary-glow: oklch(0.72 0.13 215);
+  --secondary: oklch(0.96 0.015 245);
+  --secondary-foreground: oklch(0.21 0.04 265);
+  --muted: oklch(0.96 0.008 250);
+  --muted-foreground: oklch(0.55 0.03 257);
+  --accent: oklch(0.95 0.03 240);
+  --accent-foreground: oklch(0.21 0.04 265);
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(0.984 0.003 247.858);
-  --border: oklch(0.929 0.013 255.508);
-  --input: oklch(0.929 0.013 255.508);
-  --ring: oklch(0.704 0.04 256.788);
+  --border: oklch(0.92 0.03 250);
+  --input: oklch(0.92 0.02 250);
+  --ring: oklch(0.59 0.14 242);
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);
   --chart-3: oklch(0.398 0.07 227.392);
@@ -95,6 +98,7 @@
   --sidebar-accent-foreground: oklch(0.208 0.042 265.755);
   --sidebar-border: oklch(0.929 0.013 255.508);
   --sidebar-ring: oklch(0.704 0.04 256.788);
+  --bg-gradient: radial-gradient(circle at 50% 20%, oklch(0.975 0.015 245) 0%, oklch(0.985 0.008 260) 45%, oklch(0.97 0.008 260) 100%);
 }
 
 .dark {
@@ -142,3 +146,23 @@
     color: var(--color-foreground);
   }
 }
+
+body { font-family: var(--font-sans); }
+.page-bg { background: var(--bg-gradient); }
+.text-gradient-primary { background: linear-gradient(90deg, var(--primary), var(--primary-glow)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.zellige { position: absolute; top: 0; bottom: 0; width: 320px; pointer-events: none; opacity: 0.12; z-index: 0; background-repeat: repeat-y; background-size: 260px auto;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Cg fill='none' stroke='%230284c7' stroke-width='1.5'%3E%3Cpolygon points='100,10 125,75 190,100 125,125 100,190 75,125 10,100 75,75'/%3E%3Cpolygon points='100,35 145,100 100,165 55,100'/%3E%3Ccircle cx='100' cy='100' r='55'/%3E%3Cpath d='M100,0 L200,100 L100,200 L0,100 Z'/%3E%3Cpath d='M0,0 L200,200 M200,0 L0,200'/%3E%3C/g%3E%3C/svg%3E"); }
+.zellige-left { left: -40px; } .zellige-right { right: -40px; }
+.math-bg { position: absolute; inset: 0; pointer-events: none; opacity: 0.18; background-repeat: no-repeat; background-position: center top; background-size: 100% auto;
+  background-image: url("data:image/svg+xml,%3Csvg width='1200' height='700' xmlns='http://www.w3.org/2000/svg'%3E%3Ctext x='160' y='140' font-family='serif' font-size='22' font-style='italic' fill='%233b82f6'%3EV = %E2%88%AB f(x) dt dx%3C/text%3E%3Ctext x='720' y='160' font-family='serif' font-size='24' font-style='italic' fill='%236366f1'%3E%E2%88%87%C2%B7B = 0%3C/text%3E%3Ctext x='110' y='280' font-family='serif' font-size='20' font-style='italic' fill='%2364748b'%3Emc%C2%B2 + 2%CF%83 x(t)%3C/text%3E%3Ctext x='780' y='280' font-family='serif' font-size='18' font-style='italic' fill='%2364748b'%3EM = [ x%E2%82%81%E2%82%81 ... ]%3C/text%3E%3C/svg%3E"); }
+.resource-card { position: relative; display: block; background: var(--card); border: 1.5px solid var(--border); border-radius: 18px; padding: 1.35rem 1.4rem; transition: all 0.22s cubic-bezier(0.16,1,0.3,1);
+  box-shadow: 0 4px 18px -4px color-mix(in oklab, var(--primary) 8%, transparent); cursor: pointer; }
+.resource-card:hover { transform: translateY(-3px); border-color: color-mix(in oklab, var(--primary) 45%, var(--border)); box-shadow: 0 12px 28px -6px color-mix(in oklab, var(--primary) 18%, transparent); }
+.subject-icon { width: 3.25rem; height: 3.25rem; flex-shrink: 0; display: flex; align-items: center; justify-content: center; border-radius: 1rem; color: var(--primary-foreground); font-weight: 700; font-size: 1.25rem; box-shadow: 0 4px 10px -2px oklch(0 0 0 / 0.15); }
+.folder-icon { width: 3rem; height: 3rem; flex-shrink: 0; display: flex; align-items: center; justify-content: center; border-radius: 0.9rem; background: var(--accent); font-size: 1.4rem; }
+.bg-subject-math { background: linear-gradient(135deg, oklch(0.49 0.2 262), oklch(0.36 0.15 275)); }
+.bg-subject-physique { background: linear-gradient(135deg, oklch(0.79 0.13 215), oklch(0.55 0.2 260)); }
+.bg-subject-chimie { background: linear-gradient(135deg, oklch(0.7 0.13 180), oklch(0.5 0.12 163)); }
+.bg-subject-info { background: linear-gradient(135deg, oklch(0.45 0.03 257), oklch(0.28 0.04 265)); }
+.bg-subject-si { background: linear-gradient(135deg, oklch(0.75 0.16 60), oklch(0.6 0.2 40)); }
+.bg-subject-cat { background: linear-gradient(135deg, oklch(0.65 0.2 15), oklch(0.5 0.2 0)); }
